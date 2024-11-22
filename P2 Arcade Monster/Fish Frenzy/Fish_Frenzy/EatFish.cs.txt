@@ -1,0 +1,33 @@
+using UnityEngine;
+
+public class EatFish : MonoBehaviour
+{
+    public Fish playerFish;
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Fish otherFish = other.GetComponent<Fish>();
+
+        if (otherFish != null)
+        {
+
+            if (CanEat(otherFish))
+            {
+                Eat(otherFish);
+            }
+        }
+    }
+
+    
+    bool CanEat(Fish otherFish)
+    {
+        return (playerFish.length - otherFish.length >= 10);
+    }
+
+    void Eat(Fish otherFish)
+    {
+        playerFish.length += otherFish.length;
+
+        Destroy(otherFish.gameObject);
+    }
+}
