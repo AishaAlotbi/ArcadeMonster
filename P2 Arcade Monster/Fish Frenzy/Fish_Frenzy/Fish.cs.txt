@@ -1,0 +1,31 @@
+using UnityEngine;
+
+public class Fish : MonoBehaviour
+{
+    public float moveSpeed = 5f;  // fish speeed
+    public float length = 25f;    // fish cm
+
+    
+    void Start()
+    {
+      
+        length = GetRandomFishLength();
+        Debug.Log("Fish Length: " + length + " cm");
+    }
+
+    void Update()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector2 movement = new Vector2(horizontal, vertical) * moveSpeed * Time.deltaTime;
+        transform.Translate(movement);
+    }
+
+    float GetRandomFishLength()
+    {
+        float[] possibleLengths = { 5f, 10f, 15f, 20f, 25f, 30f, 35f, 40f, 45f, 50f };
+
+        return possibleLengths[Random.Range(0, possibleLengths.Length)];
+    }
+}
