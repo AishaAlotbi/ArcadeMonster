@@ -3,9 +3,9 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] itemPrefabs; // Array of item prefabs
-    public float spawnInterval = 2f; // Time interval between spawns
+    public float spawnInterval = 2f; // Time  spawns
     private float timeSinceLastSpawn = 0f;
-    public float dropSpeed = 2f; // Initial falling speed for items
+    public float dropSpeed = 2f; // falling speed 
 
     void Update()
     {
@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
             SpawnItem();
             timeSinceLastSpawn = 0f;
 
-            // Gradually increase spawn speed and drop speed
+            //  increase spawn speed and drop speed
             spawnInterval = Mathf.Max(0.5f, spawnInterval - 0.01f);
             dropSpeed += 0.1f; // Increase drop speed over time
         }
@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (itemPrefabs == null || itemPrefabs.Length == 0)
         {
-            Debug.LogError("Item prefabs array is empty or not assigned. Please assign prefabs in the inspector.");
+            
             return;
         }
 
@@ -34,16 +34,13 @@ public class SpawnManager : MonoBehaviour
 
         if (itemPrefabs[index] != null)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-8f, 8f), 6f, 0f); // Spawn at top of screen
+            Vector3 spawnPosition = new Vector3(Random.Range(-8f, 8f), 6f, 0f); //top screeeen
             GameObject newItem = Instantiate(itemPrefabs[index], spawnPosition, Quaternion.identity);
 
-            // Add falling speed to the spawned item
+            // falling speed 
             Rigidbody2D rb = newItem.AddComponent<Rigidbody2D>();
-            rb.gravityScale = dropSpeed; // Adjust the fall speed
+            rb.gravityScale = dropSpeed; 
         }
-        else
-        {
-            Debug.LogWarning("Prefab at index " + index + " is null. Please ensure all elements in the itemPrefabs array are assigned.");
-        }
+        
     }
 }
