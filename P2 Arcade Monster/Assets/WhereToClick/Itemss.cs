@@ -19,13 +19,13 @@ public class Itemss : MonoBehaviour
 
     void Start()
     {
-        // Get the GameManager reference
+       
         gameManager = FindObjectOfType<GameManager>();
 
-        // Get the SpriteRenderer component to change the sprite dynamically
+        //  SpriteRenderer component 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Assign a random sprite based on item type
+        // A random sprite 
         if (itemType == ItemType.Fruit)
         {
             spriteRenderer.sprite = fruitSpritesArray[Random.Range(0, fruitSpritesArray.Length)];
@@ -36,7 +36,7 @@ public class Itemss : MonoBehaviour
         }
         else if (itemType == ItemType.Tomato)
         {
-            // Assign random sprite for Green or Red Tomato based on its tag
+            
             if (gameObject.CompareTag("GreenTomatoPrefab"))
             {
                 spriteRenderer.sprite = greenTomatoSpritesArray[Random.Range(0, greenTomatoSpritesArray.Length)];
@@ -50,41 +50,41 @@ public class Itemss : MonoBehaviour
 
     void OnMouseDown()
     {
-        // Check for mouse button press and item type
+        // Check  mouse button 
         if (itemType == ItemType.Veggie)
         {
-            // Left click on veggie goes to veggie box (correct)
-            if (Input.GetMouseButtonDown(0))  // Left click
+            // Left click 
+            if (Input.GetMouseButtonDown(0))  
             {
-                gameManager.UpdateScore(); // Correct placement for Veggies
-                Destroy(gameObject); // Destroy the object after clicking it correctly
+                gameManager.UpdateScore(); 
+                Destroy(gameObject); // Destroy the object 
             }
-            // Right click on veggie goes to fruit box (incorrect)
-            else if (Input.GetMouseButtonDown(1))  // Right click
+            // Right click 
+            else if (Input.GetMouseButtonDown(1))  
             {
-                gameManager.AddStrike();  // Incorrect placement
-                Destroy(gameObject); // Destroy object after wrong click
+                gameManager.AddStrike();  
+                Destroy(gameObject); // Destroy object 
             }
         }
         else if (itemType == ItemType.Fruit)
         {
-            // Left click on fruit goes to veggie box (incorrect)
-            if (Input.GetMouseButtonDown(0))  // Left click
+            // Left click 
+            if (Input.GetMouseButtonDown(0))  
             {
-                gameManager.AddStrike();  // Incorrect placement
-                Destroy(gameObject); // Destroy object after wrong click
+                gameManager.AddStrike();  
+                Destroy(gameObject); // Destroy object 
             }
-            // Right click on fruit goes to fruit box (correct)
-            else if (Input.GetMouseButtonDown(1))  // Right click
+            // Right click 
+            else if (Input.GetMouseButtonDown(1))  
             {
-                gameManager.UpdateScore(); // Correct placement
-                Destroy(gameObject); // Destroy object after correct click
+                gameManager.UpdateScore();
+                Destroy(gameObject); // Destroy 
             }
         }
         else if (itemType == ItemType.Tomato)
         {
-            // Both left and right clicks work on tomatoes
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))  // Left or right click
+            //  left and right clicks 
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))  
             {
                 if (gameObject.CompareTag("RedTomatoPrefab"))
                 {
@@ -95,7 +95,7 @@ public class Itemss : MonoBehaviour
                     gameManager.AddTime(10); // Green tomato adds 10 seconds
                 }
 
-                Destroy(gameObject); // Destroy the tomato after clicking it
+                Destroy(gameObject); // Destroy the tomato 
             }
         }
     }

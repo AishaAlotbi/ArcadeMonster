@@ -18,7 +18,7 @@ public class SpawnManager : MonoBehaviour
 
             //  increase spawn speed and drop speed
             spawnInterval = Mathf.Max(0.5f, spawnInterval - 0.01f);
-            dropSpeed += 0.1f; // Increase drop speed over time
+            dropSpeed += 0.1f; 
         }
     }
 

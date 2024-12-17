@@ -7,7 +7,7 @@ public class PlayerCollision : MonoBehaviour
 
     void Start()
     {
-        // Get the PlayerController script attached to the player
+       
         playerController = GetComponent<PlayerController>();
     }
 
@@ -15,33 +15,33 @@ public class PlayerCollision : MonoBehaviour
     {
         if (other.CompareTag("Box"))
         {
-            // Increase the player's length by 10 cm when they eat a box
+            // Increase the player's length by 10 cm
             playerController.IncreaseLength(10);
 
-            // Destroy the box after eating it
+            // Destroy the box 
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("Obstacle"))
         {
-            // Reduce health by 1 when colliding with an obstacle
-            playerController.health--;  // Access health from PlayerController script
-            Destroy(other.gameObject);  // Destroy obstacle after hit
+            // Reduce health by 1 
+            playerController.health--;  
+            Destroy(other.gameObject);  // Destroy obstacle 
 
             // Check if health reaches 0
             if (playerController.health <= 0)
             {
-                // Game Over logic
+                // Game Over 
                 Debug.Log("Game Over!");
                 // Switch to Game Over scene
-                SceneManager.LoadScene("GameOver"); // This will switch to the scene named "GameOver"
+                SceneManager.LoadScene("GameOver"); // This will switch to the scene  "GameOver"
             }
         }
         else if (other.CompareTag("PowerUp"))
         {
-            // Increase the player's health by 1 when they eat a power-up
+            // Increase the player health by 1 
             playerController.health++;
 
-            // Destroy the power-up after it is eaten
+            // Destroy PwrUP
             Destroy(other.gameObject);
         }
     }
